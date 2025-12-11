@@ -1,0 +1,33 @@
+name: Simulation-CI-CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Récupérer le code
+      uses: actions/checkout@v3
+
+    - name: Lister les fichiers Kubernetes
+      run: |
+        echo "Fichiers Kubernetes trouvés dans k8s/:"
+        ls k8s/
+        echo ""
+        echo "Backend:"
+        ls k8s/backend/
+        echo ""
+        echo "Frontend:"
+        ls k8s/frontend/
+        echo ""
+        echo "Ingress:"
+        ls k8s/ingress/
+
+    - name: Simulation du déploiement Kubernetes
+      run: |
+        echo "Simulation du déploiement Kubernetes."
+        echo "Minikube est local, donc GitHub Actions ne peut pas appliquer les manifests."
+        echo "Commande théorique : kubectl apply -f k8s/"
